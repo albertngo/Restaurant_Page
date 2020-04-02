@@ -1,24 +1,8 @@
-@mixin element($elementName){
-    &__#{$elementName}{
-        @content;
-    }
-}
-
-@mixin modifier($modifyName){
-    &--#{$modifyName}{
-        @content;
-    }
-}
-
-@mixin display($displaySize){
-    @media (min-width:#{$displaySize}){
-        @content;
-    }
-}
+@import "mixins";
 
 body, html{
     padding:0;
-    margin:0;
+    margin:5px 0 0 0;
     width:minmax(350px,100vw);
     background-color:purple;
     
@@ -30,18 +14,56 @@ ul,li,ol,a{
 
 }
 
-.hamburger_line{
-    width: 35px;
-      height: 5px;
-      background-color: black;
-      margin: 6px 0;
-    }
+// HAMBURGER MENU----------------------------------------------
 
+input{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+}
+
+.hamburger{
+        width: 40px;
+        height: 6px;
+        background: #FCFCFC;
+        margin-bottom: 5px;
+        display:block;
+        position:relative;
+        top: 10px;
+        left: 10px;
+        z-index:1;
+        background-color: #FFC600;
+}
+
+.hamburger_line1{
+    transform-origin: 0% 0%;
+    
+}
+.hamburger_line3{
+    transform-origin: 0% 100%;
+}
+
+input:checked ~ span:nth-last-of-type(3){
+    transform: rotate(45deg) translate(2px,-1px);
+    transition: transform .5s;
+}
+input:checked ~ span:nth-last-of-type(2){
+    // transform: rotate(45deg) translate(-2px, -1px);
+    opacity:0;
+    transition:opacity .5s;
+}
+input:checked ~ span:nth-last-of-type(1){
+    transform: rotate(-45deg) translate(-2px,8px);
+    transition: transform .5s ease-in-out;
+}
 // NAVIGATION MENU---------------------------------------
 
-button{
-    display:none;
-}
 
 .nav-container{
     width:80%;
@@ -50,7 +72,6 @@ button{
     flex-wrap:wrap;
     text-align: center;
 
-    
     a{ //padding around this will make entire thing clickable
         padding:1em;
         display:block; 
@@ -71,7 +92,7 @@ button{
     display:grid;
     grid-template-columns: 1fr;
     width:80%;
-    margin:0 auto;
+    margin:30px auto;
     
 
     @include display(600px){
@@ -221,11 +242,20 @@ h2{
         flex:1 1 240px;
     }
     
-    
-
-
-
 }
 
+@media (max-width:740px){
+    .nav-container{
+        display:none;
+    }
 
+    input:checked ~ .nav-container{
+        display: flex;
+    }
+}
 
+@media (min-width:740px){
+    .hamburger, .burgerbox{
+        display:none;
+    }
+}
