@@ -110,7 +110,7 @@ input:checked ~ span:nth-last-of-type(1){
         margin:15px 0;
 
             @include modifier("img"){
-                background-image: url(/images/main.jpg);
+                background-image: url(../images/main.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 // box-sizing: border-box;

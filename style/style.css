@@ -131,7 +131,7 @@ input:checked ~ span:nth-last-of-type(1) {
 }
 
 .top-section__item--img {
-  background-image: url(/images/main.jpg);
+  background-image: url(../images/main.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   display: -webkit-box;
